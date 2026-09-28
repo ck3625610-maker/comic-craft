@@ -1,0 +1,25 @@
+ComicCraft Architecture
+
+Browser
+  |
+  v
+FastAPI (app/main.py)
+  |
+  +--> Jinja2 HTML/CSS
+  |
+  +--> Gemini service
+  |      -> story, dialogue, panel prompts
+  |
+  +--> Hugging Face InferenceClient
+  |      -> diffusion image generation
+  |
+  +--> Layout/PDF service
+         -> panel images + narration
+         -> FPDF2 PDF
+
+Milestones:
+1. Model selection & architecture
+2. Core functionality + FastAPI
+3. Route/application logic
+4. Frontend + Jinja2
+5. Local deployment + testing

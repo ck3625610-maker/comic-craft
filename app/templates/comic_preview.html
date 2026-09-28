@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ story.title }} — ComicCraft</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">⚡ ComicCraft</div>
+  <div class="actions">
+    <a class="ghost" href="/">Create another</a>
+    <a class="primary small" href="/export/{{ comic_id }}">⬇ Download PDF</a>
+  </div>
+</header>
+
+<main class="container">
+  <section class="hero compact">
+    <p class="eyebrow">YOUR GENERATED COMIC</p>
+    <h1>{{ story.title }}</h1>
+    <p>{{ story.summary }}</p>
+  </section>
+
+  <section class="comic-grid">
+    {% for panel in story.panels %}
+    <article class="panel">
+      <img src="{{ image_urls[loop.index0] }}" alt="Comic panel {{ loop.index }}">
+      <div class="panel-copy">
+        <span class="panel-number">PANEL {{ loop.index }}</span>
+        <p>{{ panel.narration }}</p>
+        {% for line in panel.dialogue %}
+          <p class="dialogue"><strong>{{ line.speaker }}:</strong> {{ line.text }}</p>
+        {% endfor %}
+      </div>
+    </article>
+    {% endfor %}
+  </section>
+
+  <div class="export-box">
+    <h2>Ready to export?</h2>
+    <p>Your comic is structured with images and narration for PDF export.</p>
+    <a class="primary" href="/export/{{ comic_id }}">Download full comic PDF</a>
+  </div>
+</main>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ComicCraft — AI Comic Creator</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">⚡ ComicCraft</div>
+  <span class="tag">Gemini × Diffusion</span>
+</header>
+
+<main class="container">
+  <section class="hero">
+    <p class="eyebrow">AI COMIC STORY CREATOR</p>
+    <h1>Turn an idea into a comic.</h1>
+    <p>Describe your story, choose a character and visual style, and ComicCraft builds a panel-by-panel comic.</p>
+  </section>
+
+  {% if error %}
+  <div class="alert">⚠️ {{ error }}</div>
+  {% endif %}
+
+  <form class="card form-grid" action="/generate" method="post">
+    <label class="wide">Story prompt
+      <textarea name="story_prompt" required placeholder="A student discovers a tiny robot that can predict tomorrow..."></textarea>
+    </label>
+
+    <label>Main character
+      <input name="character_name" required placeholder="Arun">
+    </label>
+
+    <label>Setting
+      <input name="setting" required placeholder="Chennai, near a college campus">
+    </label>
+
+    <label>Tone
+      <select name="tone">
+        <option>Adventure</option>
+        <option>Funny</option>
+        <option>Mystery</option>
+        <option>Heartwarming</option>
+        <option>Science fiction</option>
+      </select>
+    </label>
+
+    <label>Art style
+      <select name="art_style">
+        <option>Modern colorful comic</option>
+        <option>Manga-inspired comic</option>
+        <option>Retro comic-book</option>
+        <option>Watercolor illustration</option>
+        <option>Cyberpunk comic</option>
+      </select>
+    </label>
+
+    <label>Panels
+      <input name="panel_count" type="number" min="2" max="6" value="{{ default_panels }}">
+    </label>
+
+    <button class="primary wide" type="submit">✨ Generate Comic</button>
+  </form>
+
+  <section class="features">
+    <div><b>01</b><span>Gemini story planning</span></div>
+    <div><b>02</b><span>Diffusion artwork</span></div>
+    <div><b>03</b><span>PDF export</span></div>
+  </section>
+</main>
+</body>
+</html>
